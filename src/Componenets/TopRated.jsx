@@ -8,6 +8,20 @@ function TopRated() {
     const [TopRatedMovies, setTopRatedMovies] = useState({});
     const [page, setPage] = useState(1);
     const genreMap = useContext(GenreContext); 
+    const [localids, setLocalids] = useState(()=>{
+        return JSON.parse(localStorage.getItem("Favourites")) || [];
+    });
+
+    function modifyIds(id) {
+        if (localids.indexOf(id) === -1) {
+            setLocalids(prev => [...prev, id]);
+        } else {
+            setLocalids(prev => prev.filter(e => e != id));
+        }
+    }
+    useEffect(() => {
+        localStorage.setItem("Favourites", JSON.stringify(localids));
+    }, [localids])
 
     useEffect(() => {
         async function abc() {
@@ -22,9 +36,15 @@ function TopRated() {
             <section className="flex flex-wrap gap-[0.8rem] justify-center">
                 {TopRatedMovies.results !== undefined &&
                     TopRatedMovies.results.map(movie => {
-                        return <section className="w-[12rem]">
+                        return <section className="w-[12rem] relative">
                             <section >
                                 <img src={`https://image.tmdb.org/t/p/w780${movie.backdrop_path}`} alt="img" className="w-[12rem] h-[18rem] rounded" />
+                                <span className="absolute top-3 right-4 bg-yellow-500 " onClick={() => { modifyIds(movie.id) }}>{
+                                    localids.indexOf(movie.id) === -1 ?
+                                        <i className="fa-solid fa-star"></i>
+                                        :
+                                        <i className="fa-regular fa-star"></i>
+                                }</span>
                             </section>
                             <p className="font-bold break-words">{movie.title}</p>
                             <section className="flex flex-wrap">

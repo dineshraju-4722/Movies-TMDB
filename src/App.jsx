@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './Componenets/Pages/HomePage'
 import Favourites from './Componenets/Pages/FavouritesPage'
 import { GenreContext } from './GenreContext'
+import SearchPage from './Componenets/Pages/SearchPage'
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
         <Routes>
           <Route path='/home' element={<Home />} />
           <Route path='/favourites' element={<Favourites />} />
+          <Route path='/search' element={<SearchPage />} />
         </Routes>
       </Router>
     </GenreContext.Provider>
