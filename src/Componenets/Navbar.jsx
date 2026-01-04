@@ -1,4 +1,5 @@
 import {  useNavigate } from "react-router-dom";
+import { requestNotificationPermission } from "../notifications";
 
 function Navbar(){
 
@@ -10,6 +11,9 @@ function Navbar(){
             <section className="flex gap-[0.9rem] w-[100vw] bg-yellow-500 border-box p-[0.3rem] px-[5vw]">
                 <span className="font-bold text-xl" onClick={()=>{navigate(`/home`)}}>Movies</span>
                 <span className="font-bold text-xl" onClick={()=>{navigate(`/favourites`)}}>Favourites</span>
+                <button onClick={requestNotificationPermission}>
+  Enable Notifications
+</button>
             </section>
         </section>
     )

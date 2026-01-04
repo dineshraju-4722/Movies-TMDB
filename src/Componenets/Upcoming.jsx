@@ -5,7 +5,7 @@ import { GenreContext } from "../GenreContext";
 function Upcoming() {
     const [UpComingMovies, setUpComingMovies] = useState({});
     const [page, setPage] = useState(1);
-    const genreMap = useContext(GenreContext);
+   const {genreMap,loading,setLoading} = useContext(GenreContext); 
 
     const [localids, setLocalids] = useState(()=>{
         return JSON.parse(localStorage.getItem("Favourites")) || [];
@@ -24,7 +24,9 @@ function Upcoming() {
 
     useEffect(() => {
         async function abc() {
+            setLoading(true)
             const res = await GetUpcomingMovies(page);
+            setLoading(false)
             setUpComingMovies(res);
         }
         abc();
