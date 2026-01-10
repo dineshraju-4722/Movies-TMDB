@@ -7,7 +7,7 @@ function TopRated() {
 
     const [TopRatedMovies, setTopRatedMovies] = useState({});
     const [page, setPage] = useState(1);
-    const {genreMap,loading,setLoading} = useContext(GenreContext); 
+    const genreMap = useContext(GenreContext); 
     const [localids, setLocalids] = useState(()=>{
         return JSON.parse(localStorage.getItem("Favourites")) || [];
     });
@@ -25,9 +25,7 @@ function TopRated() {
 
     useEffect(() => {
         async function abc() {
-           setLoading(true);
             const res = await GetTopRatedMovies(page);
-            setLoading(false);
             setTopRatedMovies(res);
         }
         abc();

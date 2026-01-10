@@ -6,7 +6,7 @@ function Popular() {
     // const isFirst = useRef(true);
     const [PopularMovies, setPopularMovies] = useState({});
     const [page, setPage] = useState(1);
-    const {genreMap,loading,setLoading} = useContext(GenreContext); 
+    const genreMap = useContext(GenreContext);
     const [localids, setLocalids] = useState(()=>{
         return JSON.parse(localStorage.getItem("Favourites")) || [];
     });
@@ -25,9 +25,7 @@ function Popular() {
 
     useEffect(() => {
         async function abc() {
-            setLoading(true)
             const res = await GetPopularMovies(page);
-            setLoading(false)
             setPopularMovies(res);
         }
         abc();
