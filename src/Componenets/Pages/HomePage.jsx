@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Navbar from "../Navbar";
 import TopRated from "../TopRated";
 import Popular from "../Popular";
 import Upcoming from "../Upcoming";
+import { GenreContext } from "../../GenreContext";
+
 
 function Home() {
+    const {loading , setLoading}=useContext(GenreContext);
 
     const [activeTab, setActiveTab] = useState("upcoming");
     
@@ -22,6 +25,7 @@ function Home() {
             </section>
 
             <section className="flex-1 overflow-scroll border-box w-[100vw] px-[5vw] mt-[1rem]">
+                {loading && <p className="absolute z-50 w-[100%] h-[100%] bg-black">kghyu</p>}
                 {activeTab === "trending" && <TopRated />}
                 {activeTab === "popular" && <Popular />}
                 {activeTab === "upcoming" && <Upcoming />}
