@@ -20,7 +20,7 @@ function SearchPage() {
         setSearch(value);
         setTimeout(async () => {
             setLoading(true)
-            const res = await GetSearchResults(search, 1);
+            const res = await GetSearchResults(value, 1);
             setLoading(false)
             setPage(1);
             setMoviesData(res);
@@ -74,10 +74,11 @@ function SearchPage() {
 
 
     return (<section className="flex flex-col h-[100vh]">
-        {loading && <p className="w-[100vw] h-[100vh] absolute bg-gray-200 z-50"></p>}
+        {loading && <p className="w-[100vw] h-[100%] opacity-50 absolute bg-black z-50"></p>}
         <Navbar></Navbar>
-        <input type="search" className="border border-gray-500 h-[2.3rem] p-[0.2rem] w-[60vw] mt-[1rem] outline-none" placeholder="Search for Movies" value={search} onChange={(e) => Searching(e)} />
-        <section className="flex flex-1 overflow-y-auto flex-col items-center ">
+        <input type="search" className="border border-gray-500 h-[2.3rem] p-[0.2rem] w-[60vw] mt-[1rem] outline-none m-auto shadow-2xl rounded-md" placeholder="Search for Movies" value={search} onChange={(e) => Searching(e)} />
+
+        <section className="flex flex-1 overflow-y-scroll flex-col items-center mt-[1rem]">
 
             <section className=" border-box w-[100vw] px-[5vw] mt-[1rem]">
                 <section className="flex    flex-wrap gap-[0.8rem] justify-center">

@@ -35,7 +35,7 @@ function TopRated() {
 
     return (
         <>
-            <section className="flex flex-wrap gap-[0.8rem] justify-center">
+            <section className="flex flex-wrap gap-[0.8rem] justify-center p-[2vw]">
                 {TopRatedMovies.results !== undefined &&
                     TopRatedMovies.results.map(movie => {
                         return <section className="w-[12rem] relative">
@@ -63,9 +63,9 @@ function TopRated() {
 
             </section>
             <section className="flex gap-[2rem] justify-center my-[1rem]">
-                {<span onClick={() => { page > 1 && setPage(page - 1) }}>-</span>}
+                <i class="fa-solid fa-arrow-left" onClick={() => { page > 1 && setPage(page - 1) }}></i>
                 {page}
-                <span onClick={() => setPage(page + 1)}>+</span>
+                <i class="fa-solid fa-arrow-right" onClick={() => setPage(page + 1)}></i>
             </section>
         </>
     )

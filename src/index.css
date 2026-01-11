@@ -1,1 +1,9 @@
 @import "tailwindcss";
+/* Chrome / Edge / Safari */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+ 
+}
+::-webkit-scrollbar:vertical {
+  width: 0;
+}
