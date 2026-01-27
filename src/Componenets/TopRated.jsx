@@ -27,8 +27,8 @@ function TopRated() {
         async function abc() {
            setLoading(true);
             const res = await GetTopRatedMovies(page);
-            setLoading(false);
             setTopRatedMovies(res);
+            setLoading(false);
         }
         abc();
     }, [page])
