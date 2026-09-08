@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import {
   BrowserRouter as Router,
@@ -12,12 +12,7 @@ import Favourites from "./Componenets/Pages/FavouritesPage";
 import SearchPage from "./Componenets/Pages/SearchPage";
 import { GenreContext } from "./GenreContext";
 
-
-
 function App() {
-
-  
-
   /* ================== GENRE LOGIC ================== */
   const genres = [
     { id: 28, name: "Action" },
@@ -48,36 +43,15 @@ function App() {
 
   const [loading, setLoading] = useState(false);
 
-  
   return (
     <GenreContext.Provider value={{ genreMap, loading, setLoading }}>
       <Router>
-
         <Routes>
-         
-
-          <Route
-            path="/home"
-            element={
-                <Home />
-            }
-          />
-
-          <Route
-            path="/favourites"
-            element={
-                <Favourites />
-            }
-          />
-
-          <Route
-            path="/search"
-            element={
-                <SearchPage />
-            }
-          />
-
-          
+          <Route path="/" element={<Navigate to="/home" replace />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/favourites" element={<Favourites />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="*" element={<Navigate to="/home" replace />} />
         </Routes>
       </Router>
     </GenreContext.Provider>
